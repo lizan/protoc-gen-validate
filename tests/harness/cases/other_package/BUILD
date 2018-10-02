@@ -4,9 +4,9 @@ load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load(
     "//bazel:pgv_proto_library.bzl",
+    "pgv_cc_proto_library",
     "pgv_go_proto_library",
     "pgv_gogo_proto_library",
-    "pgv_cc_proto_library",
 )
 
 proto_library(
@@ -23,7 +23,7 @@ pgv_go_proto_library(
     importpath = "github.com/lyft/protoc-gen-validate/tests/harness/cases/other_package/go",
     proto = ":embed_proto",
     deps = [
-        "@com_github_golang_protobuf//ptypes:go_default_library",
+        "@com_github_golang_protobuf//ptypes:go_default_library_gen",
     ],
 )
 
@@ -32,7 +32,7 @@ pgv_gogo_proto_library(
     importpath = "github.com/lyft/protoc-gen-validate/tests/harness/cases/other_package/gogo",
     proto = ":embed_proto",
     deps = [
-        "@com_github_golang_protobuf//ptypes:go_default_library",
+        "@com_github_golang_protobuf//ptypes:go_default_library_gen",
     ],
 )
 

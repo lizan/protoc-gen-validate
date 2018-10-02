@@ -4,9 +4,9 @@ load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load(
     "//bazel:pgv_proto_library.bzl",
-    "pgv_gogo_proto_library",
-    "pgv_go_proto_library",
     "pgv_cc_proto_library",
+    "pgv_go_proto_library",
+    "pgv_gogo_proto_library",
 )
 
 proto_library(
@@ -28,8 +28,8 @@ proto_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//validate:validate_proto",
         "//tests/harness/cases/other_package:embed_proto",
+        "//validate:validate_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -43,11 +43,11 @@ pgv_go_proto_library(
     proto = ":cases_proto",
     deps = [
         "//tests/harness/cases/other_package:go",
-        "@com_github_golang_protobuf//ptypes:go_default_library",
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-        "@com_github_golang_protobuf//ptypes/duration:go_default_library",
-        "@com_github_golang_protobuf//ptypes/timestamp:go_default_library",
-        "@com_github_golang_protobuf//ptypes/wrappers:go_default_library",
+        "@com_github_golang_protobuf//ptypes:go_default_library_gen",
+        "@io_bazel_rules_go//proto/wkt:any_go_proto",
+        "@io_bazel_rules_go//proto/wkt:duration_go_proto",
+        "@io_bazel_rules_go//proto/wkt:timestamp_go_proto",
+        "@io_bazel_rules_go//proto/wkt:wrappers_go_proto",
     ],
 )
 
@@ -57,19 +57,19 @@ pgv_gogo_proto_library(
     proto = ":cases_proto",
     deps = [
         "//tests/harness/cases/other_package:gogo",
-        "@com_github_golang_protobuf//ptypes:go_default_library",
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-        "@com_github_golang_protobuf//ptypes/duration:go_default_library",
-        "@com_github_golang_protobuf//ptypes/timestamp:go_default_library",
-        "@com_github_golang_protobuf//ptypes/wrappers:go_default_library",
+        "@com_github_golang_protobuf//ptypes:go_default_library_gen",
+        "@io_bazel_rules_go//proto/wkt:any_go_proto",
+        "@io_bazel_rules_go//proto/wkt:duration_go_proto",
+        "@io_bazel_rules_go//proto/wkt:timestamp_go_proto",
+        "@io_bazel_rules_go//proto/wkt:wrappers_go_proto",
     ],
 )
 
 pgv_cc_proto_library(
     name = "cc",
-    deps = [":cases_proto"],
     cc_deps = [
         "//tests/harness/cases/other_package:cc",
     ],
     visibility = ["//tests:__subpackages__"],
+    deps = [":cases_proto"],
 )

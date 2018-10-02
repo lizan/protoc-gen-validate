@@ -16,17 +16,17 @@ proto_library(
 
 cc_proto_library(
     name = "validate_cc",
-    deps = [":validate_proto"],
     visibility = ["//visibility:public"],
+    deps = [":validate_proto"],
 )
 
 py_proto_library(
     name = "validate_py",
     srcs = ["validate.proto"],
-    protoc = "@com_google_protobuf//:protoc",
     default_runtime = "@com_google_protobuf//:protobuf_python",
-    deps = ["@com_google_protobuf//:protobuf_python"],
+    protoc = "@com_google_protobuf//:protoc",
     visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:protobuf_python"],
 )
 
 go_proto_library(
